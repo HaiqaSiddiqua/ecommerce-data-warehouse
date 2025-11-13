@@ -18,7 +18,8 @@ Through this implementation, the warehouse enables comprehensive performance tra
 - **Python** – ETL, data cleaning, and enrichment  
 - **Faker** – Synthetic data generation  
 - **Power BI** – Data visualization and dashboards  
-- **CSV / Flat Files** – Sample external data sources  
+- **CSV / Flat Files** – Sample external data sources
+- **- K-Means Clustering** – Customer segmentation by purchase behavior
 
 ---
 
