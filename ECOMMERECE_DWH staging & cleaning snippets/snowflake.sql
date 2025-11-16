@@ -1,0 +1,34 @@
+-- setup
+USE ROLE SYSADMIN;
+USE WAREHOUSE COMPUTE_WH;
+USE DATABASE SNOWFLAKE_SAMPLE_DATA;
+USE SCHEMA TPCH_SF1;
+
+-- 1.a first 10 rows from CUSTOMER
+SELECT * FROM CUSTOMER LIMIT 10;
+
+-- 1.b total number of customers
+SELECT COUNT(*) AS total_customers FROM CUSTOMER;
+
+-- 1.c customers with account balance > 5000 (sample)
+SELECT C_CUSTKEY, C_NAME, C_ACCTBAL, C_PHONE, C_NATIONKEY
+FROM CUSTOMER
+WHERE C_ACCTBAL > 5000
+ORDER BY C_ACCTBAL DESC
+LIMIT 50;
+
+-- 2.a all regions
+SELECT R_REGIONKEY, R_NAME FROM REGION ORDER BY R_REGIONKEY;
+
+-- 2.b nation with region join
+SELECT n.N_NATIONKEY, n.N_NAME AS nation_name, r.R_NAME AS region_name
+FROM NATION n
+JOIN REGION r ON n.N_REGIONKEY = r.R_REGIONKEY
+ORDER BY r.R_REGIONKEY, n.N_NATIONKEY;
+
+-- 2.c count nations per region
+SELECT r.R_NAME AS region_name, COUNT(*) AS nation_count
+FROM NATION n
+JOIN REGION r ON n.N_REGIONKEY = r.R_REGIONKEY
+GROUP BY r.R_NAME
+ORDER BY nation_count DESC;
